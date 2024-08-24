@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-# from app.chat import rag_chain
+from app.chat import rag_chain
 from app.recommendation_model import predict
 from app.pd_model import predict_disease
 from io import BytesIO
@@ -17,14 +17,15 @@ def recommend():
         return jsonify({'prediction': str(predict([features])[0])})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-# @app.route("/chat/get")
-# def get_bot_response():
-#     userText = request.args.get('msg')
-#     if userText:
-#         response = rag_chain.invoke(userText)
-#         return response
-#     else:
-#         return "No message received."
+@app.route("/chat/get", methods=["POST"])  # Change to POST request
+def get_bot_response():
+    data = request.json  # Get JSON data from the request
+    userText = data.get('msg')  # Access the 'msg' field
+    if userText:
+        response = rag_chain.invoke(userText)
+        return jsonify({"response": response})  # Return JSON response
+    else:
+        return jsonify({"error": "No message received."}), 400  # Return error response
 
 @app.route("/plant/get", methods=['POST'])
 def classify_disease():
