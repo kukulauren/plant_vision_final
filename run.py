@@ -43,18 +43,19 @@ def classify_disease():
         image = file.read()
         image_stream = BytesIO(image)
         prediction = predict_disease(image_stream)
+        #currently all these diseases are caused by fungi. So I write the genearl recommendation. When the dataset is larger, we will build a separate recommendation system for this one.
         def recommend_action(disease):
-          if disease.find("healthy") != -1:
+          if (disease.find("healthy")==True):
             return "ဤအပင်သည် ကျန်းမာပါသည်။"
           else:
-            return return f"""ဤ{disease}ရောဂါကို အောက်ပါအဆင့်များဖြင့် ဖယ်ရှားနိုင်သည်။
+            return f"""ဤ{disease}ရောဂါကို အောက်ပါအဆင့်များဖြင့် ဖယ်ရှားနိုင်သည်။
                   ၁။ရောဂါကူးစက်ထားသောအပိုင်းများကို ဖယ်ရှားပေးခြင်းနှင့် အခင်းကို သန့်ရှင်းရေးလုပ်ပေးခြင်း
                   ၂။မှိုသတ်ဆေးများအသုံးပြုခြင်း
                   ၃။အခက်ချိုင်ခြင်း
                   ၄။လုံလောက်စွာ ရေလောင်းပေးခြင်း
                   ၅။ရောဂါလက္ခဏာများကို ပုံမှန် စစ်ဆေးပေးခြင်း
                   ပြုလုပ်ပုံအသေးစိတ်အား စက်ရုပ်ကို မေးမြန်းပါ။"""
-        recommend_text=recommend_action(str(prediction[0]))
+                recommend_text=recommend_action(str(prediction[0]))
         return jsonify({'prediction': str(prediction[0]),'confidence':str(prediction[1]),'recommend_text':str(recommend_text)})
 
     except Exception as e:
