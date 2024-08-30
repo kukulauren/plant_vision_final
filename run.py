@@ -40,16 +40,22 @@ def classify_disease():
         if file.filename == '':
             return jsonify({'error': 'No selected file'}), 400
 
-        # Read the image file
         image = file.read()
-
-        # Process the image and get the prediction
-        # Wrap the image data in a BytesIO object if needed
         image_stream = BytesIO(image)
         prediction = predict_disease(image_stream)
-
-        # Return the prediction as JSON
-        return jsonify({'prediction': str(prediction[0])})
+        def recommend_action(disease):
+            if (disease.find("healthy")==True):
+                return "ဤအပင်သည် ကျန်းမာပါသည်။"
+            else:
+                return f"""ဤ {disease} ရောဂါကို အောက်ပါအဆင့်များဖြင့် ဖယ်ရှားနိုင်သည်။
+                    ၁။ရောဂါကူးစက်ထားသောအပိုင်းများကို ဖယ်ရှားပေးခြင်းနှင့် အခင်းကို သန့်ရှင်းရေးလုပ်ပေးခြင်း
+                    ၂။မှိုသတ်ဆေးများအသုံးပြုခြင်း
+                    ၃။အခက်ချိုင်ခြင်း
+                    ၄။လုံလောက်စွာ ရေလောင်းပေးခြင်း (ရေမများစေရန်သတိပြုပါ။)
+                    ၅။ရောဂါလက္ခဏာများကို ပုံမှန် စစ်ဆေးပေးခြင်း
+                    ပြုလုပ်ပုံအသေးစိတ်အား စက်ရုပ်ကို မေးမြန်းပါ။"""
+        recommend_text=recommend_action(str(prediction[0]))
+        return jsonify({'prediction': str(prediction[0]),'recommend_text':str(recommend_text)})
 
     except Exception as e:
         # Return an error message in case of an exception
