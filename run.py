@@ -45,7 +45,7 @@ def classify_disease():
         prediction = predict_disease(image_stream)
         #currently all these diseases are caused by fungi. So I write the genearl recommendation. When the dataset is larger, we will build a separate recommendation system for this one.
         def recommend_action(disease):
-          if (disease.find("healthy")==True):
+          if (disease.find("healthy")!=-1):
             return "ဤအပင်သည် ကျန်းမာပါသည်။"
           else:
             return f"""ဤ{disease}ရောဂါကို အောက်ပါအဆင့်များဖြင့် ဖယ်ရှားနိုင်သည်။
