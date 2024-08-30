@@ -35,8 +35,16 @@ API Endpoints
 - Value: Image file (upload the image file to test)
 - Response will be as follows.
 - {
-      "prediction": "Potato___Early_blight"
+      "prediction": "Potato___Early_blight",
+      "recommended_text":"ဤBlueberryရောဂါကို အောက်ပါအဆင့်များဖြင့် ဖယ်ရှားနိုင်သည်။
+          ၁။ရောဂါကူးစက်ထားသောအပိုင်းများကို ဖယ်ရှားပေးခြင်းနှင့် အခင်းကို သန့်ရှင်းရေးလုပ်ပေးခြင်း
+          ၂။မှိုသတ်ဆေးများအသုံးပြုခြင်း
+          ၃။အခက်ချိုင်ခြင်း
+          ၄။လုံလောက်စွာ ရေလောင်းပေးခြင်း
+          ၅။ရောဂါလက္ခဏာများကို ပုံမှန် စစ်ဆေးပေးခြင်း
+          ပြုလုပ်ပုံအသေးစိတ်အား စက်ရုပ်ကို မေးမြန်းပါ။"
   }
+  
 2. Crop Recommendation
 - Base URL: http://192.168.1.2:8000/
 - Endpoint: /recommend/get
@@ -49,7 +57,7 @@ API Endpoints
   }
 - Response will be as follows.
 - {
-    "prediction": "rice"
+    "prediction": "rice-စပါး"
   }
 3. Chat Model
 - Base URL: http://192.168.1.2:8000/
