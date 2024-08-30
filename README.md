@@ -35,6 +35,7 @@ API Endpoints
 - Value: Image file (upload the image file to test)
 - Response will be as follows.
 - {
+      "confidence":"0.9332666",
       "prediction": "Potato___Early_blight",
       "recommended_text":"ဤBlueberryရောဂါကို အောက်ပါအဆင့်များဖြင့် ဖယ်ရှားနိုင်သည်။
           ၁။ရောဂါကူးစက်ထားသောအပိုင်းများကို ဖယ်ရှားပေးခြင်းနှင့် အခင်းကို သန့်ရှင်းရေးလုပ်ပေးခြင်း
