@@ -55,7 +55,7 @@ def classify_disease():
                     ၅။ရောဂါလက္ခဏာများကို ပုံမှန် စစ်ဆေးပေးခြင်း
                     ပြုလုပ်ပုံအသေးစိတ်အား စက်ရုပ်ကို မေးမြန်းပါ။"""
         recommend_text=recommend_action(str(prediction[0]))
-        return jsonify({'prediction': str(prediction[0]),'recommend_text':str(recommend_text)})
+        return jsonify({'prediction': str(prediction[0]),'confidence':str(prediction[1]),'recommend_text':str(recommend_text)})
 
     except Exception as e:
         # Return an error message in case of an exception
